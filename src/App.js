@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Contacts from "./components/Contacts";
+import ContactList from "./components/ContactList";
+import { onUpdate } from "./redux/phoneBook/reducer";
+import { getFilter } from "./redux/phoneBook/selectors";
+import { getContacts } from "./redux/phoneBook/operations";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, []);
+
+  const filter = useSelector(getFilter); //from redux
+
+  const handleFilter = (filterText) => dispatch(onUpdate(filterText));
+
+  const handleChange = (e) => {
+    const filter = e.target.value;
+
+    handleFilter(filter);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <span>Find:</span>
+      <input type="text" value={filter} name="filter" onChange={handleChange} />
+
+      <Contacts />
+
+      <ContactList />
+    </>
   );
-}
+};
 
 export default App;
