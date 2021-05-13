@@ -3,10 +3,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { v4 as uuidv4 } from "uuid";
-// import { onSave } from "../../redux/phoneBook/reducer";
-//import { onSave } from "../../redux/phoneBook/actions";
 import { getContacts } from "../../redux/phoneBook/selectors";
-import addContact from "../../redux/phoneBook/operations";
+import operations from "../../redux/phoneBook/operations";
 
 const initialState = {
   id: "",
@@ -23,7 +21,7 @@ const Contacts = () => {
 
   const contacts = useSelector(getContacts);
 
-  const handleSaveItem = (item) => dispatch(addContact.addContact(item));
+  const handleSaveItem = (item) => dispatch(operations.addContact(item));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +64,7 @@ const Contacts = () => {
         </label>
 
         <label>
+          <span>Number:</span>
           <input
             type="tel"
             value={number}
@@ -76,7 +75,9 @@ const Contacts = () => {
             required
           />
         </label>
-        <button type="submit">+ Add</button>
+        <button className="button" type="submit">
+          + Add
+        </button>
       </form>
     </>
   );

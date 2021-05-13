@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ContactItem from "../ContactItem";
 import { getVisibleContacts } from "../../redux/phoneBook/selectors";
-import getContacts from "../../redux/phoneBook/operations";
+import operations from "../../redux/phoneBook/operations";
 
 const useStyles = createUseStyles({
   list: {
@@ -20,7 +20,7 @@ const ContactList = () => {
   const visibleContacts = useSelector(getVisibleContacts); //from redux
 
   useEffect(
-    () => dispatch(getContacts.getContacts()),
+    () => dispatch(operations.getContacts()),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
