@@ -26,7 +26,8 @@ const App = () => {
       <span>Find:</span>
       <input type="text" value={filter} name="filter" onChange={handleChange} />
       <Contacts />
-      {isLoading ? <p>Loading...</p> : <ContactList />}
+      {isLoading && <p>Loading...</p>}
+      <ContactList />
     </>
   );
 };

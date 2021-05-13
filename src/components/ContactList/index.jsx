@@ -20,7 +20,7 @@ const ContactList = () => {
   const visibleContacts = useSelector(getVisibleContacts); //from redux
 
   useEffect(
-    () => dispatch(getContacts()),
+    () => dispatch(getContacts.getContacts()),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
