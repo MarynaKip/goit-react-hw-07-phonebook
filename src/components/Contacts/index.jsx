@@ -23,7 +23,7 @@ const Contacts = () => {
 
   const contacts = useSelector(getContacts);
 
-  const handleSaveItem = (item) => dispatch(addContact(item));
+  const handleSaveItem = (item) => dispatch(addContact.addContact(item));
 
   const handleSubmit = (e) => {
     e.preventDefault();
